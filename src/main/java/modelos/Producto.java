@@ -4,10 +4,14 @@ import java.time.LocalDate;
 
 public class Producto {
 
-    private Integer identificador;
+    private int identificador;
     private String codigo;
     private String descripcion;
     private LocalDate fechaCaducidad;
+    private TipoProducto tipoProducto;
+    private Almacen almacen;
+
+
 
 
 
