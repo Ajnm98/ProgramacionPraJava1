@@ -124,6 +124,7 @@ public class Factura {
         this.cliente = cliente;
     }
 
+    //CONSTR. COPIA
     public Factura(Factura f){
         this.identificador = f.getIdentificador();
         this.codigoFactura = f.getCodigoFactura();
