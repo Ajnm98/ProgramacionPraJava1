@@ -11,22 +11,31 @@ public class UtilidadesProducto {
 
     public List<Producto> getPorTipo(List<Producto> productos, TipoProducto tipo){
 
-        List<Producto> listaproductos = new ArrayList<Producto>();
-        //Integer tipo1 = TipoProducto.ALIMENTACION;
-        //Integer tipo2 = TipoProducto.BEBIDA;
+        List<Producto> listaproductostipo = new ArrayList<Producto>();
 
-        if(tipo ==TipoProducto.ALIMENTACION){
+        for(Producto producto : productos){
+            if(producto.equals(tipo)){
+                listaproductostipo.add(producto);
 
+            }
         }
 
 
-        return listaproductos;
+        return listaproductostipo;
     }
 
     public List<Producto> getPorAlmacen(List<Producto> productos, Almacen almacen){
 
+        List<Producto> listaproductosalmacen = new ArrayList<Producto>();
 
-        return ;
+        for(Producto producto : productos){
+            if(producto.equals(almacen)){
+                listaproductosalmacen.add(producto);
+            }
+        }
+
+
+        return listaproductosalmacen ;
     }
 
 
