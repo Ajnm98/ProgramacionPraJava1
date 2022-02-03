@@ -97,7 +97,7 @@ public class Empleado {
         this.nombre = e.getNombre();
         this.apellidos = e.getApellidos();
         this.direccion = e.getDireccion();
-        this.numTelefono = e.getNumTelefono()e();
+        this.numTelefono = e.getNumTelefono();
         this.empresa = e.getEmpresa();
         this.contrato = e.getContrato();
     }

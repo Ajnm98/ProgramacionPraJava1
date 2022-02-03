@@ -1,5 +1,6 @@
 package utilidades;
 
+import modelos.Contrato;
 import modelos.Empleado;
 import modelos.Empresa;
 import modelos.TipoContrato;
@@ -18,7 +19,7 @@ public class UtilidadesEmpresa {
         List<Empresa> listaEmpresaEmpresa = new ArrayList<>();
 
 
-       / for(Empleado empleado : ){
+       //for(Empleado empleado : ){
 
         //}
 
@@ -29,13 +30,28 @@ public class UtilidadesEmpresa {
 
     public List<Empleado> getMileuristasOrdenadosPorSalario(Empresa empresa){
 
-        List<Empleado> listaMileuristas= new ArrayList<>();
-        List<Empleado> listaEmpleados1 = new ArrayList<Empleado>();
+        List<Empleado> listaEmpleados= new ArrayList<>();
+        List<Empresa> listaEmpresa = new ArrayList<>();
 
-            for(Empleado empleado : listaEmpleados1){
+        //List<Empleado> listaEmpleados1 = new ArrayList<Contrato>();
 
-                if(empleado.getContrato().getSalarioBase())
-            }
+           // for(Empleado empleado : listaEmpleados1){
+
+             //   if(empleado.getContrato())
+           // }
+        return listaEmpleados;
+    }
+
+
+    public Empleado getMejorPagado(List<Empresa> empresas){
+
+        List<Empresa> listaEmpresa = new ArrayList<>();
+
+
+
+
+
+        return ;
 
     }
 
