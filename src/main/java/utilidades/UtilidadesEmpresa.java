@@ -14,9 +14,9 @@ public class UtilidadesEmpresa {
 
     public List<Empleado> getEmpleadosPorContrato(Empresa empresa, TipoContrato tipoContrato){
 
-        List<Empleado> listaEmpleadosEmpresaTipo = new ArrayList<>();
+        List<Empleado> listaEmpleadosEmpresaTipo = new ArrayList<Empleado>();
 
-        List<Empresa> listaEmpresaEmpresa = new ArrayList<>();
+        List<Empresa> listaEmpresaEmpresa = new ArrayList<Empresa>();
 
 
        //for(Empleado empleado : ){
@@ -30,30 +30,32 @@ public class UtilidadesEmpresa {
 
     public List<Empleado> getMileuristasOrdenadosPorSalario(Empresa empresa){
 
-        List<Empleado> listaEmpleados= new ArrayList<>();
-        List<Empresa> listaEmpresa = new ArrayList<>();
+        List<Empleado> listaEmpleados= new ArrayList<Empleado>();
+        List
 
         //List<Empleado> listaEmpleados1 = new ArrayList<Contrato>();
 
-           // for(Empleado empleado : listaEmpleados1){
+           for(Empleado empleado : listaEmpleados){
 
-             //   if(empleado.getContrato())
-           // }
+                if (empresa.getEmpleados().equals(empresa)){
+
+                }
+           }
         return listaEmpleados;
     }
 
 
-    public Empleado getMejorPagado(List<Empresa> empresas){
+   // public Empleado getMejorPagado(List<Empresa> empresas){
 
-        List<Empresa> listaEmpresa = new ArrayList<>();
-
-
+        //List<Empresa> listaEmpresa = new ArrayList<>();
 
 
 
-        return ;
 
-    }
+
+       // return listaEmpresa;
+
+   // }
 
 
 }
