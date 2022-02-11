@@ -88,12 +88,35 @@ public class UtilidadesEmpresa {
 
 
 
-    public Map<TipoContrato, List<Empleado>> getEmpleadosPorTipoContrato(Empresa empresas){
+   // public Map<TipoContrato, List<Empleado>> getEmpleadosPorTipoContrato(Empresa empresas){
 
 
 
 
-        return ;
+        //return empresas;
+   // }
+
+   // public Map<Empresa, Map<TipoContrato, List<Empleado>>> getEmpleadosPorTipoContrato(List<Empresa> empresas){
+
+   // return ;
+   // }
+
+
+
+    public List<Empleado> getEmpleadosPymePracticas(List<Empresa> empresas){
+
+        List<Empleado> empleadosPymesPra = new ArrayList<>();
+        List<Empleado> listaempleados= new ArrayList<Empleado>();
+
+        for (Empleado empleado : listaempleados) {
+
+            if (empleado.equals(empresas))
+                if (empleado.getContrato().getTipoContrato() == TipoContrato.PRACTICAS) {
+                    empleadosPymesPra.add(empleado);
+                }
+
+        }
+        return empleadosPymesPra;
     }
 
 
