@@ -1,11 +1,9 @@
 package utilidades;
 
-import modelos.Contrato;
-import modelos.Empleado;
-import modelos.Empresa;
-import modelos.TipoContrato;
+import modelos.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -88,18 +86,53 @@ public class UtilidadesEmpresa {
 
 
 
-   // public Map<TipoContrato, List<Empleado>> getEmpleadosPorTipoContrato(Empresa empresas){
+    public Map<TipoContrato, List<Empleado>> getEmpleadosPorTipoContrato(Empresa empresas){
+
+        Map<TipoContrato, List<Empleado>> empleadosAgrupadosPorTipo = new HashMap<>();
 
 
 
+        List<Empleado> listaEmpleado = new ArrayList<Empleado>();
+        List<Empleado> listaEmpleadoInde = new ArrayList<>();
+        List<Empleado> listaEmpleadoPra = new ArrayList<>();
+        List<Empleado> listaEmpleadoOYS = new ArrayList<>();
+        List<Empleado> listaEmpleadoTem = new ArrayList<>();
 
-        //return empresas;
-   // }
+        for (Empleado empleado : listaEmpleado){
+            if(empleado.equals(empresas)){
+                if (empleado.getContrato().getTipoContrato() == TipoContrato.INDEFINIDO){
+                    listaEmpleadoInde.add(empleado);
+                }
+                else if (empleado.getContrato().getTipoContrato() == TipoContrato.PRACTICAS){
+                    listaEmpleadoPra.add(empleado);
+                }
+                else if (empleado.getContrato().getTipoContrato() == TipoContrato.OBRAYSERVICIO){
+                    listaEmpleadoOYS.add(empleado);
+                }
+                else if (empleado.getContrato().getTipoContrato() == TipoContrato.TEMPORAL){
+                    listaEmpleadoTem.add(empleado);
+                }
 
-   // public Map<Empresa, Map<TipoContrato, List<Empleado>>> getEmpleadosPorTipoContrato(List<Empresa> empresas){
+            }
 
-   // return ;
-   // }
+
+        }
+        empleadosAgrupadosPorTipo.put(TipoContrato.INDEFINIDO, listaEmpleadoInde);
+        empleadosAgrupadosPorTipo.put(TipoContrato.OBRAYSERVICIO, listaEmpleadoOYS);
+        empleadosAgrupadosPorTipo.put(TipoContrato.PRACTICAS, listaEmpleadoPra);
+        empleadosAgrupadosPorTipo.put(TipoContrato.TEMPORAL, listaEmpleadoTem);
+
+
+        return empleadosAgrupadosPorTipo;
+    }
+
+    public Map<Empresa, Map<TipoContrato, List<Empleado>>> getEmpleadosPorTipoContrato(List<Empresa> empresas){
+
+        Map<Empresa, List<Empleado>> empleadosAgrupadosPorTipo = new HashMap<>();
+
+        return ;
+
+    }
 
 
 
@@ -107,6 +140,7 @@ public class UtilidadesEmpresa {
 
         List<Empleado> empleadosPymesPra = new ArrayList<>();
         List<Empleado> listaempleados= new ArrayList<Empleado>();
+
 
         for (Empleado empleado : listaempleados) {
 
@@ -119,6 +153,70 @@ public class UtilidadesEmpresa {
         return empleadosPymesPra;
     }
 
+    public Map<Empresa,Empleado> getLosMejorPagadosPorEmpresa(List<Empresa> empresas){
 
+        Map<TipoEmpresa,  List<Empleado>> empleadomascobracada = new HashMap<>();
+
+        List<Empleado> listaempleados= new ArrayList<Empleado>();
+        Empleado EmpleadoPY = new Empleado();
+        Empleado EmpleadoST = new Empleado();
+        Empleado EmpleadoNA = new Empleado();
+        Empleado EmpleadoMU = new Empleado();
+        List<Empleado> EmpleadoPy1= new ArrayList<>();
+        List<Empleado> EmpleadoSt1= new ArrayList<>();
+        List<Empleado> EmpleadoNa1= new ArrayList<>();
+        List<Empleado> EmpleadoMu1= new ArrayList<>();
+
+
+
+        for (Empleado empleado : listaempleados){
+
+            if (empleado.equals(empresas)){
+                if(empleado.getEmpresa().getTipoEmpresa() == TipoEmpresa.PYME){
+                    if(empleado.getContrato().getSalarioBase() > EmpleadoPY.getContrato().getSalarioBase()){
+                        Empleado EmpleadoPy = empleado;
+                        EmpleadoPy1.remove(-1);
+                        EmpleadoPy1.add(EmpleadoPy);
+                    }
+
+                }
+
+                if(empleado.getEmpresa().getTipoEmpresa() == TipoEmpresa.STARTUP){
+                    if(empleado.getContrato().getSalarioBase() > EmpleadoST.getContrato().getSalarioBase()){
+                        Empleado EmpleadoSt = empleado;
+                        EmpleadoSt1.remove(-1);
+                        EmpleadoSt1.add(EmpleadoSt);
+                    }
+
+                }
+
+                if(empleado.getEmpresa().getTipoEmpresa() == TipoEmpresa.NACIONAL){
+                    if(empleado.getContrato().getSalarioBase() > EmpleadoNA.getContrato().getSalarioBase()){
+                        Empleado EmpleadoNa = empleado;
+                        EmpleadoNa1.remove(-1);
+                        EmpleadoNa1.add(EmpleadoNa);
+                    }
+
+                }
+                if(empleado.getEmpresa().getTipoEmpresa() == TipoEmpresa.MULTINACIONAL){
+                    if(empleado.getContrato().getSalarioBase() > EmpleadoMU.getContrato().getSalarioBase()){
+                        Empleado EmpleadoMu = empleado;
+                        EmpleadoMu1.remove(-1);
+                        EmpleadoMu1.add(EmpleadoMu);
+                    }
+
+                }
+            }
+
+        }
+
+        empleadomascobracada.put(TipoEmpresa.PYME, EmpleadoPy1);
+        empleadomascobracada.put(TipoEmpresa.STARTUP, EmpleadoSt1);
+        empleadomascobracada.put(TipoEmpresa.NACIONAL, EmpleadoNa1);
+        empleadomascobracada.put(TipoEmpresa.MULTINACIONAL, EmpleadoMu1);
+
+
+        return empleadomascobracada;
+    }
 
 }
