@@ -128,9 +128,49 @@ public class UtilidadesEmpresa {
 
     public Map<Empresa, Map<TipoContrato, List<Empleado>>> getEmpleadosPorTipoContrato(List<Empresa> empresas){
 
-        Map<Empresa, List<Empleado>> empleadosAgrupadosPorTipo = new HashMap<>();
+        Map<TipoContrato, List<Empleado>> empleadosAgrupadosPorTipo = new HashMap<>();
+        Map<Empresa, Map<TipoContrato, List<Empleado>>> getEmpleadosPorTipoContrato = new HashMap<>();
 
-        return ;
+        List<Empleado> empleados = new ArrayList<>();
+        List<Empleado> empleadosInde = new ArrayList<>();
+        List<Empleado> empleadosTem = new ArrayList<>();
+        List<Empleado> empleadosOys = new ArrayList<>();
+        List<Empleado> empleadosPra = new ArrayList<>();
+
+
+        for (Empleado empleado : empleados) {
+            if(empleado.equals(empresas)){
+                if(empleado.getContrato().getTipoContrato() == TipoContrato.INDEFINIDO){
+                    empleadosInde.add(empleado);
+
+                }
+                else if(empleado.getContrato().getTipoContrato() == TipoContrato.TEMPORAL){
+                    empleadosTem.add(empleado);
+
+                }
+                else if(empleado.getContrato().getTipoContrato() == TipoContrato.OBRAYSERVICIO){
+                    empleadosOys.add(empleado);
+
+                }
+                else if(empleado.getContrato().getTipoContrato() == TipoContrato.PRACTICAS){
+                    empleadosPra.add(empleado);
+
+                }
+            }
+
+
+        }
+        empleadosAgrupadosPorTipo.put(TipoContrato.INDEFINIDO, empleadosInde);
+        empleadosAgrupadosPorTipo.put(TipoContrato.OBRAYSERVICIO, empleadosOys);
+        empleadosAgrupadosPorTipo.put(TipoContrato.PRACTICAS, empleadosOys);
+        empleadosAgrupadosPorTipo.put(TipoContrato.TEMPORAL, empleadosTem);
+
+        Empresa e1 = new Empresa(1123, "3123", empleados, TipoEmpresa.PYME);
+
+
+        getEmpleadosPorTipoContrato.put(e1, empleadosAgrupadosPorTipo);
+
+        return getEmpleadosPorTipoContrato;
 
     }
 

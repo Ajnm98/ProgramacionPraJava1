@@ -17,17 +17,17 @@ public class UtilidadesFactura {
         return vencido;
     }
 
-    //public double calcularBaseFactura(Factura factura){
+    public double calcularBaseFactura(Factura factura){
 
-        //Double importeb =0.0;
+        Double importe =0.0;
 
-        //for(Factura f: factura){
-        //    importeb += f.getLineaFactura;
-      //  }
+        for(LineaFactura ln: factura.getLineaFactura()){
+            importe += ln.getProducto().getPrecio()*ln.getCantidad();
+       }
 
-        //return importeb;
+        return importe;
 
-   // }
+    }
 
     public double calcularTotalAPagar(Factura factura){
 

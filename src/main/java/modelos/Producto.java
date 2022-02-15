@@ -11,16 +11,20 @@ public class Producto {
     private LocalDate fechaCaducidad;
     private TipoProducto tipoProducto;
     private Almacen almacen;
+    private double precio;
 
     //Const.Comp
-    public Producto(int identificador, String codigo, String descripcion, LocalDate fechaCaducidad, TipoProducto tipoProducto, Almacen almacen) {
+
+    public Producto(int identificador, String codigo, String descripcion, LocalDate fechaCaducidad, TipoProducto tipoProducto, Almacen almacen, double precio) {
         this.identificador = identificador;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.fechaCaducidad = fechaCaducidad;
         this.tipoProducto = tipoProducto;
         this.almacen = almacen;
+        this.precio = precio;
     }
+
 
     //Const.Vac
 
@@ -75,6 +79,14 @@ public class Producto {
         this.almacen = almacen;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
     //Const.Copia
     public Producto(Producto p){
         this.identificador = p.getIdentificador();
@@ -83,6 +95,7 @@ public class Producto {
         this.fechaCaducidad = p.getFechaCaducidad();
         this.tipoProducto = p.getTipoProducto();
         this.almacen = p.getAlmacen();
+        this.precio = p.getPrecio();
     }
 
     @Override
@@ -90,12 +103,12 @@ public class Producto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Producto producto = (Producto) o;
-        return identificador == producto.identificador && Objects.equals(codigo, producto.codigo) && Objects.equals(descripcion, producto.descripcion) && Objects.equals(fechaCaducidad, producto.fechaCaducidad) && tipoProducto == producto.tipoProducto && Objects.equals(almacen, producto.almacen);
+        return identificador == producto.identificador && Double.compare(producto.precio, precio) == 0 && Objects.equals(codigo, producto.codigo) && Objects.equals(descripcion, producto.descripcion) && Objects.equals(fechaCaducidad, producto.fechaCaducidad) && tipoProducto == producto.tipoProducto && Objects.equals(almacen, producto.almacen);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(identificador, codigo, descripcion, fechaCaducidad, tipoProducto, almacen);
+        return Objects.hash(identificador, codigo, descripcion, fechaCaducidad, tipoProducto, almacen, precio);
     }
 
     @Override
@@ -107,6 +120,7 @@ public class Producto {
                 ", fechaCaducidad=" + fechaCaducidad +
                 ", tipoProducto=" + tipoProducto +
                 ", almacen=" + almacen +
+                ", precio=" + precio +
                 '}';
     }
 }
