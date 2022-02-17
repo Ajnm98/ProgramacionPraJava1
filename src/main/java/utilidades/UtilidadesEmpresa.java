@@ -81,7 +81,8 @@ public class UtilidadesEmpresa {
                     listaFinal.add(empleado);
                 }
             }
-    return listaFinal;
+      Empleado mascobra = listaFinal.get(0);
+    return mascobra;
     }
 
 
@@ -193,70 +194,28 @@ public class UtilidadesEmpresa {
         return empleadosPymesPra;
     }
 
-    public Map<Empresa,Empleado> getLosMejorPagadosPorEmpresa(List<Empresa> empresas){
+    public Map<Empresa,Empleado> getLosMejorPagadosPorEmpresa(List<Empresa> empresas) {
 
-        Map<TipoEmpresa,  List<Empleado>> empleadomascobracada = new HashMap<>();
+        Map<Empresa,Empleado> empleadomap = new HashMap<>();
 
-        List<Empleado> listaempleados= new ArrayList<Empleado>();
-        Empleado EmpleadoPY = new Empleado();
-        Empleado EmpleadoST = new Empleado();
-        Empleado EmpleadoNA = new Empleado();
-        Empleado EmpleadoMU = new Empleado();
-        List<Empleado> EmpleadoPy1= new ArrayList<>();
-        List<Empleado> EmpleadoSt1= new ArrayList<>();
-        List<Empleado> EmpleadoNa1= new ArrayList<>();
-        List<Empleado> EmpleadoMu1= new ArrayList<>();
+        List<Empleado> listaempleados = new ArrayList<Empleado>();
 
+        for (Empresa empresa : empresas) {
 
+            Empleado Empleadomascobra = null;
 
-        for (Empleado empleado : listaempleados){
+            for (Empleado e : listaempleados) {
 
-            if (empleado.equals(empresas)){
-                if(empleado.getEmpresa().getTipoEmpresa() == TipoEmpresa.PYME){
-                    if(empleado.getContrato().getSalarioBase() > EmpleadoPY.getContrato().getSalarioBase()){
-                        Empleado EmpleadoPy = empleado;
-                        EmpleadoPy1.remove(-1);
-                        EmpleadoPy1.add(EmpleadoPy);
-                    }
+                if ((Empleadomascobra.equals(null))||(e.getContrato().getSalarioBase() > Empleadomascobra.getContrato().getSalarioBase()) ) {
+
+                    Empleadomascobra = e;
 
                 }
 
-                if(empleado.getEmpresa().getTipoEmpresa() == TipoEmpresa.STARTUP){
-                    if(empleado.getContrato().getSalarioBase() > EmpleadoST.getContrato().getSalarioBase()){
-                        Empleado EmpleadoSt = empleado;
-                        EmpleadoSt1.remove(-1);
-                        EmpleadoSt1.add(EmpleadoSt);
-                    }
-
-                }
-
-                if(empleado.getEmpresa().getTipoEmpresa() == TipoEmpresa.NACIONAL){
-                    if(empleado.getContrato().getSalarioBase() > EmpleadoNA.getContrato().getSalarioBase()){
-                        Empleado EmpleadoNa = empleado;
-                        EmpleadoNa1.remove(-1);
-                        EmpleadoNa1.add(EmpleadoNa);
-                    }
-
-                }
-                if(empleado.getEmpresa().getTipoEmpresa() == TipoEmpresa.MULTINACIONAL){
-                    if(empleado.getContrato().getSalarioBase() > EmpleadoMU.getContrato().getSalarioBase()){
-                        Empleado EmpleadoMu = empleado;
-                        EmpleadoMu1.remove(-1);
-                        EmpleadoMu1.add(EmpleadoMu);
-                    }
-
-                }
             }
 
+            empleadomap.put(empresa, Empleadomascobra);
         }
-
-        empleadomascobracada.put(TipoEmpresa.PYME, EmpleadoPy1);
-        empleadomascobracada.put(TipoEmpresa.STARTUP, EmpleadoSt1);
-        empleadomascobracada.put(TipoEmpresa.NACIONAL, EmpleadoNa1);
-        empleadomascobracada.put(TipoEmpresa.MULTINACIONAL, EmpleadoMu1);
-
-
-        return empleadomascobracada;
+        return empleadomap;
     }
-
 }
