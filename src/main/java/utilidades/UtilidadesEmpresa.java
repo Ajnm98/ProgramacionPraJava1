@@ -138,38 +138,31 @@ public class UtilidadesEmpresa {
         List<Empleado> empleadosOys = new ArrayList<>();
         List<Empleado> empleadosPra = new ArrayList<>();
 
-
+        for (Empresa e : empresas){
         for (Empleado empleado : empleados) {
-            if(empleado.equals(empresas)){
-                if(empleado.getContrato().getTipoContrato() == TipoContrato.INDEFINIDO){
+
+                if (empleado.getContrato().getTipoContrato() == TipoContrato.INDEFINIDO) {
                     empleadosInde.add(empleado);
 
-                }
-                else if(empleado.getContrato().getTipoContrato() == TipoContrato.TEMPORAL){
+                } else if (empleado.getContrato().getTipoContrato() == TipoContrato.TEMPORAL) {
                     empleadosTem.add(empleado);
 
-                }
-                else if(empleado.getContrato().getTipoContrato() == TipoContrato.OBRAYSERVICIO){
+                } else if (empleado.getContrato().getTipoContrato() == TipoContrato.OBRAYSERVICIO) {
                     empleadosOys.add(empleado);
 
-                }
-                else if(empleado.getContrato().getTipoContrato() == TipoContrato.PRACTICAS){
+                } else if (empleado.getContrato().getTipoContrato() == TipoContrato.PRACTICAS) {
                     empleadosPra.add(empleado);
 
                 }
-            }
-
 
         }
-        empleadosAgrupadosPorTipo.put(TipoContrato.INDEFINIDO, empleadosInde);
-        empleadosAgrupadosPorTipo.put(TipoContrato.OBRAYSERVICIO, empleadosOys);
-        empleadosAgrupadosPorTipo.put(TipoContrato.PRACTICAS, empleadosOys);
-        empleadosAgrupadosPorTipo.put(TipoContrato.TEMPORAL, empleadosTem);
+            empleadosAgrupadosPorTipo.put(TipoContrato.INDEFINIDO, empleadosInde);
+            empleadosAgrupadosPorTipo.put(TipoContrato.OBRAYSERVICIO, empleadosOys);
+            empleadosAgrupadosPorTipo.put(TipoContrato.PRACTICAS, empleadosOys);
+            empleadosAgrupadosPorTipo.put(TipoContrato.TEMPORAL, empleadosTem);
 
-        Empresa e1 = new Empresa(1123, "3123", empleados, TipoEmpresa.PYME);
-
-
-        getEmpleadosPorTipoContrato.put(e1, empleadosAgrupadosPorTipo);
+            getEmpleadosPorTipoContrato.put(e, empleadosAgrupadosPorTipo);
+        }
 
         return getEmpleadosPorTipoContrato;
 

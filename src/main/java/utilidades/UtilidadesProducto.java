@@ -11,7 +11,7 @@ public class UtilidadesProducto {
 
     public List<Producto> getPorTipo(List<Producto> productos, TipoProducto tipo){
 
-        //List<Producto> listaproductostipo = new ArrayList<Producto>();
+
         List<Producto> listaproductopor = new ArrayList<>();
 
         for(Producto producto : productos){
