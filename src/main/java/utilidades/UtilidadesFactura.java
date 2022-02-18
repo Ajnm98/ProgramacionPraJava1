@@ -47,11 +47,9 @@ public class UtilidadesFactura {
 
         Double total = 0.0;
 
-
         for (Factura factura : facturas){
             if (factura.equals(cliente)){
                 total = factura.getTotalAPagar() + total;
-
             }
         }
         return total;

@@ -2,22 +2,19 @@ package utilidades;
 
 import modelos.Cliente;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class UtilidadesCliente {
 
     public boolean esDniValido(Cliente cliente) {
 
-        String Dni = cliente.getDni();
-        char[] Caracteres = Dni.toCharArray();
-       // char [] Numeros = {0,1,2,3,4,5,6,7,8,9};
-        //char Ultimo = Dni.charAt(8);
-        Boolean esValido = true;
+        Pattern p = Pattern.compile("[0-9]{8},[a-zA-Z]");
+        Matcher m = p.matcher(cliente.getDni());
+        boolean b = m.matches();
 
-        for(int i = 0; i<Caracteres.length; i++){
-            if((Dni.length() != 9 || Character.isLetter(Dni.charAt(8)) || Character.isDigit(Dni.charAt(i-1)) == false))
-            { esValido = false; }
-
-        }
-    return esValido;}
+        return b;
+    }
     }
 
 

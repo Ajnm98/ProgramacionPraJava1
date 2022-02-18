@@ -2,10 +2,8 @@ package utilidades;
 
 import modelos.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class UtilidadesEmpresa {
@@ -13,73 +11,62 @@ public class UtilidadesEmpresa {
 
     public List<Empleado> getEmpleadosPorContrato(Empresa empresa, TipoContrato tipoContrato) {
 
-        List<Empleado> listaEmpleados = new ArrayList<Empleado>();
+
         List<Empleado> listaEmpleadosCorrectos = new ArrayList<>();
 
 
-        for (Empleado empleado : listaEmpleados) {
+        for (Empleado empleado : empresa.getEmpleados()) {
             if (empleado.equals(empresa) && empleado.equals(tipoContrato)) {
                 listaEmpleadosCorrectos.add(empleado);
             }
         }
-        return listaEmpleados;
+        return listaEmpleadosCorrectos;
+
     }
 
 
     public List<Empleado> getMileuristasOrdenadosPorSalario(Empresa empresa) {
 
-        List<Empleado> listaEmpleados = new ArrayList<Empleado>();
+
         List<Contrato> listaContratos = new ArrayList<Contrato>();
         List<Empleado> listaFinal = new ArrayList<>();
 
 
-        for (Empleado empleado : listaEmpleados) {
+        for (Empleado empleado : empresa.getEmpleados()) {
 
-            if (empresa.getEmpleados().equals(empresa)) {
-                for (Contrato contrato : listaContratos) {
                     if (empleado.getContrato().getSalarioBase() >1000){
                         listaFinal.add(empleado);
                     }
                 }
-            }
-        }
-        return listaFinal;
+        return listaFinal.stream().sorted(Comparator.comparing(e -> e.getContrato().getSalarioBase())).collect(Collectors.toList());
     }
 
 
     public double fondoSalarialEmpresa(Empresa empresa) {
 
-        List<Empleado> listaEmpleados = new ArrayList<Empleado>();
         Double Contratos = 0.0;
-        List<Contrato> listaContratos = new ArrayList<Contrato>();
 
+        for (Empleado empleado : empresa.getEmpleados()) {
 
-        for (Empleado empleado : listaEmpleados) {
-
-            if (empleado.equals(empresa)) {
-
-                for (Contrato contrato : listaContratos) {
-                    Contratos = contrato.getSalarioBase() + Contratos;
+                    Contratos = empleado.getContrato().getSalarioBase() + Contratos;
                 }
-            }
-        }
         return Contratos;
     }
 
 
     public Empleado getMejorPagado(List<Empresa> empresas) {
 
-        List<Empleado> listaEmpleado = new ArrayList<Empleado>();
         List<Empleado> listaFinal = new ArrayList<>();
         Double Final1 = 0.0;
 
-        for (Empleado empleado : listaEmpleado)
-            if (empleado.equals(empresas)) {
-                if (empleado.getContrato().getSalarioBase() > Final1) {
-                    Final1 = empleado.getContrato().getSalarioBase();
+        for(Empresa e : empresas){
+            for(Empleado em : e.getEmpleados()){
+                if(em.getContrato().getSalarioBase() > Final1){
+                    Final1 = em.getContrato().getSalarioBase();
                     listaFinal.remove(-1);
-                    listaFinal.add(empleado);
+                    listaFinal.add(em);
                 }
+            }
             }
       Empleado mascobra = listaFinal.get(0);
     return mascobra;
@@ -98,6 +85,7 @@ public class UtilidadesEmpresa {
         List<Empleado> listaEmpleadoPra = new ArrayList<>();
         List<Empleado> listaEmpleadoOYS = new ArrayList<>();
         List<Empleado> listaEmpleadoTem = new ArrayList<>();
+
 
         for (Empleado empleado : listaEmpleado){
             if(empleado.equals(empresas)){
@@ -132,14 +120,13 @@ public class UtilidadesEmpresa {
         Map<TipoContrato, List<Empleado>> empleadosAgrupadosPorTipo = new HashMap<>();
         Map<Empresa, Map<TipoContrato, List<Empleado>>> getEmpleadosPorTipoContrato = new HashMap<>();
 
-        List<Empleado> empleados = new ArrayList<>();
         List<Empleado> empleadosInde = new ArrayList<>();
         List<Empleado> empleadosTem = new ArrayList<>();
         List<Empleado> empleadosOys = new ArrayList<>();
         List<Empleado> empleadosPra = new ArrayList<>();
 
         for (Empresa e : empresas){
-        for (Empleado empleado : empleados) {
+        for (Empleado empleado : e.getEmpleados()) {
 
                 if (empleado.getContrato().getTipoContrato() == TipoContrato.INDEFINIDO) {
                     empleadosInde.add(empleado);
@@ -173,17 +160,18 @@ public class UtilidadesEmpresa {
     public List<Empleado> getEmpleadosPymePracticas(List<Empresa> empresas){
 
         List<Empleado> empleadosPymesPra = new ArrayList<>();
-        List<Empleado> listaempleados= new ArrayList<Empleado>();
 
 
-        for (Empleado empleado : listaempleados) {
-
-            if (empleado.equals(empresas))
-                if (empleado.getContrato().getTipoContrato() == TipoContrato.PRACTICAS) {
-                    empleadosPymesPra.add(empleado);
+        for (Empresa e : empresas) {
+            if (e.getTipoEmpresa().equals(TipoEmpresa.PYME)) {
+                for (Empleado em : e.getEmpleados()) {
+                    if (em.getContrato().getTipoContrato() == TipoContrato.PRACTICAS) {
+                        empleadosPymesPra.add(em);
+                    }
                 }
-
+            }
         }
+
         return empleadosPymesPra;
     }
 
@@ -191,13 +179,12 @@ public class UtilidadesEmpresa {
 
         Map<Empresa,Empleado> empleadomap = new HashMap<>();
 
-        List<Empleado> listaempleados = new ArrayList<Empleado>();
 
         for (Empresa empresa : empresas) {
 
             Empleado Empleadomascobra = null;
 
-            for (Empleado e : listaempleados) {
+            for (Empleado e : empresa.getEmpleados()) {
 
                 if ((Empleadomascobra.equals(null))||(e.getContrato().getSalarioBase() > Empleadomascobra.getContrato().getSalarioBase()) ) {
 

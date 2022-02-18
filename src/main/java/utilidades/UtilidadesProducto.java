@@ -11,16 +11,14 @@ public class UtilidadesProducto {
 
     public List<Producto> getPorTipo(List<Producto> productos, TipoProducto tipo){
 
-
         List<Producto> listaproductopor = new ArrayList<>();
 
         for(Producto producto : productos){
-            if(producto.equals(tipo)){
+            if(producto.getTipoProducto().equals(tipo)){
                 listaproductopor.add(producto);
 
             }
         }
-
 
         return listaproductopor;
     }
@@ -30,7 +28,7 @@ public class UtilidadesProducto {
         List<Producto> listaproductosalmacen = new ArrayList<>();
 
         for(Producto producto : productos){
-            if(producto.equals(almacen)){
+            if(producto.getAlmacen().equals(almacen)){
                 listaproductosalmacen.add(producto);
             }
         }
