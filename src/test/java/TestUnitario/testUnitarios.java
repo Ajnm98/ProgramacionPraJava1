@@ -10,7 +10,7 @@ public class testUnitarios {
     @Test
     public void testEmpleadospoContratos(){
 
-       //Empleado empleado1 = new Empleado(637415405, "SAFA",);
+
 
 
 
